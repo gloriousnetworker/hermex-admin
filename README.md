@@ -42,7 +42,7 @@ This project demonstrates my skills in:
 ### 3. Technical Details
 - **Frontend Framework:** Next.js
 - **Styling:** Tailwind CSS
-- **Data Visualizations:** Implemented using Recharts, Chart.js.
+- **Data Visualizations:** Implemented using Recharts.
 - **Route Protection:** Using Next.js middleware or React Context.
 - **State Management:** Using React hooks or Context API.
 - **API Mocking:** API calls are mocked with an external service or MSW (Mock Service Worker).
