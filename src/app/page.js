@@ -1,103 +1,119 @@
-import Image from "next/image";
+'use client'; // Mark as a client component
 
-export default function Home() {
+import { useEffect, useState } from 'react';
+import { gsap } from 'gsap';
+
+export default function LandingPage() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate a loading period (e.g., 3 seconds)
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    // GSAP animation for the bar chart SVG while loading
+    if (loading) {
+      const tl = gsap.timeline({ repeat: -1, yoyo: true });
+      tl.to('.chart-bar', {
+        scaleY: 1.3,
+        transformOrigin: 'bottom',
+        duration: 0.8,
+        ease: 'power1.inOut',
+      });
+    }
+  }, [loading]);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-[#1F2937] flex flex-col justify-center items-center text-white">
+      <div className="px-4 text-center">
+        {/* Main Heading */}
+        <h1 className="text-5xl font-extrabold mb-4 animate__animated animate__fadeInDown">
+          BI Insights
+        </h1>
+        <p className="text-xl max-w-2xl mx-auto mb-8 animate__animated animate__fadeInDown animate__delay-1s">
+          Transforming Data Into Actionable Insights
+        </p>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        {/* Animated Data Visualization SVG */}
+        <div className="flex justify-center items-center mb-8 animate__animated animate__fadeInUp animate__delay-1s">
+          {loading ? (
+            <svg
+              className="w-32 h-32"
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {/* Three bars representing a simple bar chart */}
+              <rect
+                className="chart-bar"
+                x="15"
+                y="40"
+                width="10"
+                height="40"
+                fill="#3B82F6"
+              />
+              <rect
+                className="chart-bar"
+                x="40"
+                y="30"
+                width="10"
+                height="50"
+                fill="#3B82F6"
+              />
+              <rect
+                className="chart-bar"
+                x="65"
+                y="50"
+                width="10"
+                height="30"
+                fill="#3B82F6"
+              />
+            </svg>
+          ) : (
+            <svg
+              className="w-32 h-32"
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {/* Final static bar chart when loading is complete */}
+              <rect x="15" y="40" width="10" height="40" fill="#3B82F6" />
+              <rect x="40" y="30" width="10" height="50" fill="#3B82F6" />
+              <rect x="65" y="50" width="10" height="30" fill="#3B82F6" />
+            </svg>
+          )}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Status Message */}
+        {loading ? (
+          <p className="text-lg font-semibold animate__animated animate__fadeInUp animate__delay-1_5s">
+            Loading Data...
+          </p>
+        ) : (
+          <p className="text-lg font-semibold animate__animated animate__fadeInUp animate__delay-1_5s">
+            Welcome to your Dashboard
+          </p>
+        )}
+
+        {/* Additional Information */}
+        <div className="mt-8 animate__animated animate__fadeInUp animate__delay-2s">
+          <h2 className="text-2xl font-bold mb-2">Building a smarter business</h2>
+          <p className="text-md opacity-80">
+            Our platform delivers real-time insights, interactive charts, and detailed analytics to help you make informed decisions.
+          </p>
+        </div>
+
+        {/* Loading Dots Animation */}
+        {loading && (
+          <div className="flex justify-center mt-6 space-x-2">
+            <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
+            <div className="w-2 h-2 bg-white rounded-full animate-pulse delay-150" />
+            <div className="w-2 h-2 bg-white rounded-full animate-pulse delay-300" />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Mini Business Intelligence Tool
 
-## Getting Started
+## Overview
 
-First, run the development server:
+**Objective:**  
+Create a fully functional and visually appealing Business Intelligence (BI) tool featuring user authentication, data visualization, and a dashboard displaying meaningful business metrics.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This project demonstrates my skills in:
+- Frontend development using Next.js
+- UI/UX design with Tailwind CSS
+- State management using React hooks or Context API
+- Deployment and integration of interactive data visualizations
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. User Authentication
+- **Login Page:**
+  - Users log in with email and password.
+  - "Keep me logged in" option included.
+  - Auto-logout after 1 minute of inactivity if "Keep me logged in" is not selected.
+- **Registration Page:**
+  - Allows users to sign up using email, password, and full name.
+  - Implements form validation and error handling.
+- **Protected Routes:**
+  - Dashboard access is restricted to authenticated users only.
 
-## Learn More
+### 2. Dashboard Page
+- **Metrics Summary:**
+  - Cards displaying key metrics like Total Users, Active Sessions, and Sales Revenue.
+- **Charts:**
+  - **Line Chart:** For sales trends.
+  - **Bar Chart:** For user growth.
+  - **Pie/Donut Chart:** For category distribution.
+- **Data Table:**
+  - Displays sample data (user or sales data).
+  - Supports sorting and filtering.
+- **Auto Logout:**
+  - Logs out the user after 1 minute of inactivity if "Keep me logged in" is not selected.
 
-To learn more about Next.js, take a look at the following resources:
+### 3. Technical Details
+- **Frontend Framework:** Next.js
+- **Styling:** Tailwind CSS
+- **Data Visualizations:** Implemented using Recharts, Chart.js.
+- **Route Protection:** Using Next.js middleware or React Context.
+- **State Management:** Using React hooks or Context API.
+- **API Mocking:** API calls are mocked with an external service or MSW (Mock Service Worker).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Bonus Features (Optional)
+- Dark mode support.
+- Figma design/wireframes for UI.
+- UI animations and transitions.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Project Setup
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Local Development
+1. **Clone the repository:**
+   ```bash
+   git clone <YOUR_GITHUB_REPO_URL>
+   cd my-bi-tool
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    Install dependencies:
+
+npm install
+
+Run the development server:
+
+    npm run dev
+
+    Visit http://localhost:3000 to see the application.
+
+Deployment
+
+The project is deployed on Vercel.
+Live Link: [Insert Live Link Here]
+Design Considerations
+
+    UI/UX:
+    The design emphasizes a sleek and modern aesthetic with professional typography, intuitive layouts, and responsive components.
+    Animation:
+    GSAP and CSS animations are used to create engaging and dynamic interactions.
+    State Management & Security:
+    Proper state management ensures a seamless user experience, while protected routes and auto-logout enhance security.
+
+Repository & Deployment
+
+    GitHub Repository: [Insert GitHub Repo Link Here]
+    Deployed Application: [Insert Live Link Here]
+
+Conclusion
+
+This mini BI tool is a demonstration of advanced frontend development techniques, combining powerful data visualizations with modern design and robust user authentication. Feedback and contributions are welcome!
