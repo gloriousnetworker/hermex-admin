@@ -5,6 +5,17 @@
 /* Import FontAwesome styles */
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 
+html {
+  /* The default theme will be light mode. */
+  transition: background-color 0.3s ease;
+}
+
+/* Dark mode styles */
+html.dark {
+  background-color: #1a202c; /* Dark background */
+  color: white; /* Light text */
+}
+
 /* Font Styles */
 body {
   @apply bg-background text-foreground font-sans;
