@@ -3,7 +3,7 @@
 ## Overview
 
 **Objective:**  
-Create a fully functional and visually appealing Business Intelligence (BI) tool featuring user authentication, data visualization, and a dashboard displaying meaningful business metrics.
+Creation of a fully functional and visually appealing Business Intelligence (BI) tool featuring user authentication, data visualization, and a dashboard displaying meaningful business metrics.
 
 This project demonstrates my skills in:
 - Frontend development using Next.js
@@ -59,7 +59,7 @@ This project demonstrates my skills in:
 ### Local Development
 1. **Clone the repository:**
    ```bash
-   git clone <YOUR_GITHUB_REPO_URL>
+   git clone https://github.com/gloriousnetworker/my-bi-tool.git
    cd my-bi-tool
 
     Install dependencies:
@@ -75,9 +75,9 @@ Run the development server:
 Deployment
 
 The project is deployed on Vercel.
-Live Link: [Insert Live Link Here]
-Design Considerations
+Live Link: https://my-bi-tool.vercel.app/
 
+Design Considerations
     UI/UX:
     The design emphasizes a sleek and modern aesthetic with professional typography, intuitive layouts, and responsive components.
     Animation:
@@ -87,8 +87,8 @@ Design Considerations
 
 Repository & Deployment
 
-    GitHub Repository: [Insert GitHub Repo Link Here]
-    Deployed Application: [Insert Live Link Here]
+    GitHub Repository: https://github.com/gloriousnetworker/my-bi-tool
+    Deployed Application: https://my-bi-tool.vercel.app/
 
 Conclusion
 
