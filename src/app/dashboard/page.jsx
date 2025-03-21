@@ -66,7 +66,6 @@ export default function DashboardPage() {
 
   return (
     <div className="flex min-h-screen">
-      {/* Sidebar: conditionally rendered on mobile */}
       {isSidebarOpen && (
         <Sidebar 
           onNavigate={handleNavigation} 
