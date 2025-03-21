@@ -43,9 +43,9 @@ This project demonstrates my skills in:
 - **Frontend Framework:** Next.js
 - **Styling:** Tailwind CSS
 - **Data Visualizations:** Implemented using Recharts.
-- **Route Protection:** Using Next.js middleware or React Context.
-- **State Management:** Using React hooks or Context API.
-- **API Mocking:** API calls are mocked with an external service or MSW (Mock Service Worker).
+- **Route Protection:** Using Next.js middleware.
+- **State Management:** Using React hooks.
+- **API Mocking:** API calls are mocked Json server requests.
 
 ### 4. Bonus Features (Optional)
 - Dark mode support.

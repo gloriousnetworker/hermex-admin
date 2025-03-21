@@ -32,11 +32,9 @@ export default function Sidebar({ onNavigate, onLogout }) {
   return (
     <aside className="w-64 bg-gray-100 dark:bg-gray-800 p-4 flex flex-col justify-between h-screen relative">
       <div>
-        {/* Logo at top */}
         <div className="flex justify-center mb-8">
           <Image src="/placeholder.png" alt="Logo" width={120} height={120} />
         </div>
-        {/* Navigation links */}
         <nav className="mt-8">
           <ul className="space-y-4">
             {menuItems.map((item) => (
@@ -52,7 +50,6 @@ export default function Sidebar({ onNavigate, onLogout }) {
           </ul>
         </nav>
       </div>
-      {/* Logout button at bottom */}
       <div>
         <button 
           onClick={handleLogoutClick}
@@ -61,7 +58,6 @@ export default function Sidebar({ onNavigate, onLogout }) {
           Logout
         </button>
       </div>
-      {/* Logout Modal */}
       {showLogoutModal && (
         <LogoutModal 
           isOpen={showLogoutModal} 

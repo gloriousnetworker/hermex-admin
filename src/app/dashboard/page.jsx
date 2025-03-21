@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Cookies from "js-cookie";
 import Navbar from '../../components/dashboard/Navbar';
 import Sidebar from '../../components/dashboard/Sidebar';
 import Footer from '../../components/dashboard/Footer';
@@ -19,9 +20,16 @@ export default function DashboardPage() {
   const [activeSection, setActiveSection] = useState('overview');
   const [loading, setLoading] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [currentUserName, setCurrentUserName] = useState("John Doe");
   const router = useRouter();
 
-  // Handle sidebar navigation with a loader
+  useEffect(() => {
+    const storedName = localStorage.getItem("userName");
+    if (storedName && storedName !== "undefined") {
+      setCurrentUserName(storedName);
+    }
+  }, []);
+
   const handleNavigation = (section) => {
     setLoading(true);
     setTimeout(() => {
@@ -30,17 +38,17 @@ export default function DashboardPage() {
     }, 1000);
   };
 
-  // Handle logout (navigate to /login)
   const handleLogout = () => {
+    Cookies.remove("authToken");
+    localStorage.removeItem("keepLoggedIn");
+    localStorage.removeItem("userName");
     router.push('/signin/login');
   };
 
-  // Toggle sidebar open/close for mobile
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  // Render content based on active section
   const renderContent = () => {
     switch (activeSection) {
       case 'overview':
@@ -64,19 +72,38 @@ export default function DashboardPage() {
     }
   };
 
+  useEffect(() => {
+    const keepLoggedIn = localStorage.getItem("keepLoggedIn") === "true";
+    if (!keepLoggedIn) {
+      let timer;
+      const resetTimer = () => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          handleLogout();
+        }, 60000);
+      };
+      window.addEventListener('mousemove', resetTimer);
+      window.addEventListener('keypress', resetTimer);
+      resetTimer();
+      return () => {
+        clearTimeout(timer);
+        window.removeEventListener('mousemove', resetTimer);
+        window.removeEventListener('keypress', resetTimer);
+      };
+    }
+  }, [router]);
+
   return (
     <div className="flex min-h-screen">
       {isSidebarOpen && (
-        <Sidebar 
-          onNavigate={handleNavigation} 
-          onLogout={handleLogout} 
-        />
+        <Sidebar onNavigate={handleNavigation} onLogout={handleLogout} />
       )}
       <div className="flex-1 flex flex-col">
-        <Navbar 
-          toggleSidebar={toggleSidebar} 
+        <Navbar
+          toggleSidebar={toggleSidebar}
           activeSection={activeSection}
-          onNavigate={handleNavigation} 
+          onNavigate={handleNavigation}
+          userName={currentUserName}
         />
         <main className="flex-1 p-4">
           {loading ? (

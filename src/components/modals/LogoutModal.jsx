@@ -30,7 +30,7 @@ export default function LogoutModal({ isOpen, onConfirm, onCancel }) {
               leaveFrom="opacity-100 scale-100" 
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white dark:bg-gray-800 p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white dark:bg-gray-800 p-6 text-left shadow-xl transition-all">
                 <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">
                   Are you leaving us soon?
                 </Dialog.Title>
@@ -38,7 +38,7 @@ export default function LogoutModal({ isOpen, onConfirm, onCancel }) {
                   <button
                     type="button"
                     onClick={onConfirm}
-                    className="inline-flex items-center rounded-md border border-transparent bg-green-500 px-4 py-2 text-sm font-medium text-white hover:bg-green-600 focus:outline-none"
+                    className="inline-flex items-center rounded-md bg-green-500 px-4 py-2 text-sm font-medium text-white hover:bg-green-600 focus:outline-none"
                   >
                     <CheckIcon className="h-5 w-5 mr-2" />
                     Yes
@@ -46,7 +46,7 @@ export default function LogoutModal({ isOpen, onConfirm, onCancel }) {
                   <button
                     type="button"
                     onClick={onCancel}
-                    className="inline-flex items-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600 focus:outline-none"
+                    className="inline-flex items-center rounded-md bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600 focus:outline-none"
                   >
                     <XMarkIcon className="h-5 w-5 mr-2" />
                     No
