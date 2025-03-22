@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
-import Loader from "../../../components/loader/Loader"; // adjust path as needed
+import Loader from "../../../components/loader/LoginLoader"; 
 
 export default function LoginPage() {
   const router = useRouter();
@@ -35,11 +35,11 @@ export default function LoginPage() {
     localStorage.setItem("keepLoggedIn", form.keepLoggedIn);
     localStorage.setItem("userName", name);
     toast.success("Login successful!");
-    // Delay the navigation so the loader can be seen
+    // Delay navigation to show loader
     setTimeout(() => {
       router.push("/dashboard");
       setIsLoading(false);
-    }, 1500); // Adjust delay as needed
+    }, 1500);
   };
 
   // Submit handler
@@ -88,7 +88,6 @@ export default function LoginPage() {
         localStorage.setItem("keepLoggedIn", form.keepLoggedIn);
         localStorage.setItem("userName", data.name || "John Doe");
         toast.success("Login successful!");
-        // Delay navigation to show loader
         setTimeout(() => {
           router.push("/dashboard");
           setIsLoading(false);
@@ -114,39 +113,29 @@ export default function LoginPage() {
 
   return (
     <div className={`${darkMode ? "dark" : ""} relative`}>
-      {/* Loader overlay */}
-      {isLoading && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
-          <Loader />
-        </div>
-      )}
+      {/* Render Loader directly if isLoading is true */}
+      {isLoading && <Loader />}
 
       {/* Container with 2 columns */}
       <div className="min-h-screen flex">
-        {/* LEFT COLUMN (Background + Card with a round border on the right side) */}
+        {/* LEFT COLUMN */}
         <div
           className="hidden lg:flex w-1/2 bg-cover bg-center relative rounded-r-[80px] overflow-hidden"
           style={{ backgroundImage: "url('/signin_images/background.png')" }}
         >
-          {/* Overlay to darken if in night mode or add a tinted background */}
           <div className="absolute inset-0 bg-black bg-opacity-30 dark:bg-opacity-50" />
-
           <div className="relative z-10 flex flex-col justify-center items-center p-8 w-full h-full">
-            {/* Logo on top */}
             <img
               src="/logo.png"
               alt="The Matrix Logo"
               className="mb-8 h-16 w-auto object-contain"
             />
-
             <h2 className="text-white dark:text-gray-200 text-3xl font-bold mb-2">
               Get started with us
             </h2>
             <p className="text-white dark:text-gray-300 text-sm mb-8 text-center max-w-xs">
               Complete these easy steps to register your account.
             </p>
-
-            {/* Social Buttons (rounded-full) with PNG icons */}
             <button className="flex items-center justify-center w-64 mb-4 bg-white hover:bg-gray-100 text-gray-700 py-3 px-6 rounded-full shadow">
               <img
                 src="/signin_images/google.png"
@@ -168,17 +157,12 @@ export default function LoginPage() {
 
         {/* RIGHT COLUMN (Login Form) */}
         <div className="flex flex-col justify-center items-center w-full lg:w-1/2 bg-white dark:bg-gray-900 px-8 py-12 relative">
-          {/* Day/Night Toggle with a sleek border and transparent background */}
           <button
             onClick={toggleDarkMode}
-            className="absolute top-4 right-4 text-sm py-1 px-3 border border-gray-300 dark:border-gray-600 
-              rounded-full bg-transparent text-gray-700 dark:text-gray-200 
-              hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            className="absolute top-4 right-4 text-sm py-1 px-3 border border-gray-300 dark:border-gray-600 rounded-full bg-transparent text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
           >
             {darkMode ? "Light Mode" : "Dark Mode"}
           </button>
-
-          {/* Welcome Back Text (silver color, suitable for both modes) */}
           <div className="mb-8 text-center">
             <h1 className="text-3xl font-bold mb-2 text-[#000000] dark:text-[#C0C0C0]">
               Welcome Back!
@@ -187,12 +171,8 @@ export default function LoginPage() {
               Enter your email and password to access your account
             </p>
           </div>
-
-          {/* Actual Login Form */}
           <div className="w-full max-w-sm">
-            {error && (
-              <p className="text-red-500 text-center mb-4">{error}</p>
-            )}
+            {error && <p className="text-red-500 text-center mb-4">{error}</p>}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 font-medium">
@@ -233,14 +213,14 @@ export default function LoginPage() {
                     Keep me logged in
                   </label>
                 </div>
-                <a href="/signin/reset-password" className="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400">
+                <a
+                  href="/signin/reset-password"
+                  className="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400"
+                >
                   Forgot password?
                 </a>
               </div>
-              <button
-                type="submit"
-                className="w-full py-3 bg-black text-white rounded-full hover:bg-gray-800 transition"
-              >
+              <button type="submit" className="w-full py-3 bg-black text-white rounded-full hover:bg-gray-800 transition">
                 Log in
               </button>
             </form>

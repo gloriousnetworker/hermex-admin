@@ -13,6 +13,7 @@ export default function Sidebar({
 }) {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [userName, setUserName] = useState("Guest");
 
   // Menu items
   const menuItems = [
@@ -24,16 +25,14 @@ export default function Sidebar({
     { label: "Settings", section: "settings" },
   ];
 
-  // Detect if the <html> element has the 'dark' class to set isDarkMode
+  // On mount, check for dark mode and retrieve the username from localStorage
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const checkDarkMode = () => {
-        setIsDarkMode(document.documentElement.classList.contains("dark"));
-      };
-      checkDarkMode();
-      // If you want dynamic detection (if user toggles dark mode from elsewhere),
-      // you could add a MutationObserver or an event listener, but for now this
-      // single check on mount should suffice.
+      setIsDarkMode(document.documentElement.classList.contains("dark"));
+      const storedName = localStorage.getItem("userName");
+      if (storedName) {
+        setUserName(storedName);
+      }
     }
   }, []);
 
@@ -72,14 +71,12 @@ export default function Sidebar({
         overflow-y-auto
         transition-transform
         duration-300
-        // Gradient background to mimic the screenshot
         bg-gradient-to-b
-        from-[#2c3539]   // a dark teal/gray
-        to-[#1f2426]     // a slightly darker shade
+        from-[#2c3539]
+        to-[#1f2426]
         dark:from-[#2c3539]
         dark:to-[#1f2426]
       `}
-      style={{}}
     >
       {/* Close (X) Button for Mobile */}
       <button
@@ -112,22 +109,18 @@ export default function Sidebar({
       {/* Top Section: Logo */}
       <div className="mb-8">
         <div className="flex items-center justify-center mb-6">
-          {/* A single logo image with filter for dark mode */}
           <Image
-            src="/logo.png" // Replace with your actual single logo
+            src="/logo.png"
             alt="Company Logo"
             width={120}
             height={50}
-            className={`transition-all ${
-              isDarkMode ? "filter invert" : ""
-            }`} 
+            className={`transition-all ${isDarkMode ? "filter invert" : ""}`}
           />
         </div>
 
-        {/* Navigation + Logout (red text) */}
+        {/* Navigation + Logout */}
         <nav>
           <ul className="flex flex-col space-y-1 items-center text-center">
-            {/* Menu Items */}
             {menuItems.map((item) => {
               const isActive = activeSection === item.section;
               return (
@@ -155,8 +148,6 @@ export default function Sidebar({
                 </li>
               );
             })}
-
-            {/* Logout as Red Text */}
             <li className="w-full">
               <button
                 onClick={handleLogoutClick}
@@ -189,7 +180,7 @@ export default function Sidebar({
             className="rounded-full object-cover mr-3"
           />
           <div>
-            <p className="font-semibold text-white">Ivar Born</p>
+            <p className="font-semibold text-white">{userName}</p>
             <p className="text-sm text-green-400">Active</p>
           </div>
         </div>
