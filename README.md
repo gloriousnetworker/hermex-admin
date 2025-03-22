@@ -20,6 +20,30 @@ This project demonstrates my skills in:
   - Users log in with email and password.
   - "Keep me logged in" option included.
   - Auto-logout after 1 minute of inactivity if "Keep me logged in" is not selected.
+Test Credentials for Dashboard Access
+
+In the live environment, to ensure that the dashboard remains accessible without a full backend implementation, we have hardcoded four test user credentials. These credentials are used to force authentication so that users can access the dashboard without having to register first. In production, if a user logs in using one of the following credentials, they will be automatically granted access and their corresponding name will be displayed in the dashboard:
+
+    Test User
+    Email: test@gmail.com
+    Password: 1234567890
+
+    Mano
+    Email: mano@gmail.com
+    Password: 1234567890
+
+    Beatrice Omor
+    Email: beatriceomor@gmail.com
+    Password: 1234567890
+
+    BrandDrive Admin
+    Email: admin@gmail.com
+    Password: 1234567890
+
+    Note:
+    In the local development environment, you can register and use any credentials of your choice. Registered users will be stored in the local JSON database (db.json) and authenticated using the standard API flow. The hardcoded credentials are only applied in production (or when the API is not available).
+
+
 - **Registration Page:**
   - Allows users to sign up using email, password, and full name.
   - Implements form validation and error handling.

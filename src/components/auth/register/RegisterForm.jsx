@@ -19,7 +19,6 @@ export default function RegisterForm({ setIsLoading }) {
   };
 
   const validateEmail = (email) => {
-    // Simple regex for email validation
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
@@ -28,18 +27,22 @@ export default function RegisterForm({ setIsLoading }) {
     // Basic validations
     if (!form.name.trim()) {
       setError("Full name is required");
+      toast.error("Full name is required");
       return;
     }
     if (!validateEmail(form.email)) {
       setError("Please enter a valid email address");
+      toast.error("Please enter a valid email address");
       return;
     }
     if (form.password.length < 6) {
       setError("Password must be at least 6 characters long");
+      toast.error("Password must be at least 6 characters long");
       return;
     }
     if (form.password !== form.confirmPassword) {
       setError("Passwords do not match");
+      toast.error("Passwords do not match");
       return;
     }
     setError("");

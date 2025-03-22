@@ -17,6 +17,18 @@
       "name": "Michael Bash",
       "email": "mike@gmail.com",
       "password": "1234567890"
+    },
+    {
+      "id": 1742623477284,
+      "name": "Tester Two ",
+      "email": "test2@gmail.com",
+      "password": "1234567890"
+    },
+    {
+      "id": 1742624663462,
+      "name": "Noah Gusen",
+      "email": "noah@gmail.com",
+      "password": "1234567890"
     }
   ]
 }
