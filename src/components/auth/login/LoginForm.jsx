@@ -1,9 +1,9 @@
-// components/auth/login/LoginForm.jsx
 "use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 
 export default function LoginForm({ setIsLoading }) {
   const router = useRouter();
@@ -15,8 +15,23 @@ export default function LoginForm({ setIsLoading }) {
     setForm((prev) => ({ ...prev, [id]: type === "checkbox" ? checked : value }));
   };
 
+  const validateEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateEmail(form.email)) {
+      setError("Please enter a valid email address");
+      toast.error("Please enter a valid email address");
+      return;
+    }
+    if (form.password.length < 6) {
+      setError("Password must be at least 6 characters long");
+      toast.error("Password must be at least 6 characters long");
+      return;
+    }
+    setError("");
     setIsLoading(true);
     try {
       const res = await fetch("/api/login", {
@@ -26,19 +41,21 @@ export default function LoginForm({ setIsLoading }) {
       });
       if (res.ok) {
         const data = await res.json();
-        console.log("Logged in user name:", data.name); // Check what is returned
+        console.log("Logged in user name:", data.name);
         Cookies.set("authToken", data.token, { expires: form.keepLoggedIn ? 7 : undefined });
         Cookies.set("keepLoggedIn", form.keepLoggedIn);
         localStorage.setItem("keepLoggedIn", form.keepLoggedIn);
-        // Save user's name in localStorage; if data.name is undefined, it will be null
         localStorage.setItem("userName", data.name || "John Doe");
+        toast.success("Login successful!");
         router.push("/dashboard");
       } else {
         const data = await res.json();
         setError(data.message || "Login failed");
+        toast.error(data.message || "Login failed");
       }
     } catch (err) {
       setError("Something went wrong");
+      toast.error("Something went wrong");
     } finally {
       setIsLoading(false);
     }
@@ -52,7 +69,9 @@ export default function LoginForm({ setIsLoading }) {
       {error && <p className="text-red-500 text-center mb-4">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="email" className="block text-gray-700 dark:text-gray-300">Email Address</label>
+          <label htmlFor="email" className="block text-gray-700 dark:text-gray-300">
+            Email Address
+          </label>
           <input
             type="email"
             id="email"
@@ -63,7 +82,9 @@ export default function LoginForm({ setIsLoading }) {
           />
         </div>
         <div>
-          <label htmlFor="password" className="block text-gray-700 dark:text-gray-300">Password</label>
+          <label htmlFor="password" className="block text-gray-700 dark:text-gray-300">
+            Password
+          </label>
           <input
             type="password"
             id="password"
@@ -96,7 +117,9 @@ export default function LoginForm({ setIsLoading }) {
         <div className="text-center mt-4">
           <p className="text-gray-600 dark:text-gray-300">
             Don't have an account?{" "}
-            <a href="/signin/register" className="text-blue-500 hover:text-blue-600">Register here</a>
+            <a href="/signin/register" className="text-blue-500 hover:text-blue-600">
+              Register here
+            </a>
           </p>
         </div>
       </form>

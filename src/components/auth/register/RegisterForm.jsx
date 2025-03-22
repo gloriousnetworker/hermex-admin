@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function RegisterForm({ setIsLoading }) {
   const router = useRouter();
@@ -17,12 +18,31 @@ export default function RegisterForm({ setIsLoading }) {
     setForm((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
+  const validateEmail = (email) => {
+    // Simple regex for email validation
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Basic validations
+    if (!form.name.trim()) {
+      setError("Full name is required");
+      return;
+    }
+    if (!validateEmail(form.email)) {
+      setError("Please enter a valid email address");
+      return;
+    }
+    if (form.password.length < 6) {
+      setError("Password must be at least 6 characters long");
+      return;
+    }
     if (form.password !== form.confirmPassword) {
       setError("Passwords do not match");
       return;
     }
+    setError("");
     setIsLoading(true);
     try {
       const res = await fetch("/api/register", {
@@ -31,13 +51,16 @@ export default function RegisterForm({ setIsLoading }) {
         body: JSON.stringify(form),
       });
       if (res.ok) {
+        toast.success("Registration successful!");
         router.push("/signin/login");
       } else {
         const data = await res.json();
         setError(data.message || "Registration failed");
+        toast.error(data.message || "Registration failed");
       }
     } catch (err) {
       setError("Something went wrong");
+      toast.error("Something went wrong");
     } finally {
       setIsLoading(false);
     }
