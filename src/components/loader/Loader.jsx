@@ -3,26 +3,29 @@
 export default function Loader() {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <svg
-        className="animate-spin h-12 w-12 text-white"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-      >
-        <circle
-          className="opacity-25"
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="currentColor"
-          strokeWidth="4"
+      {/* Outer container for the rotating gradient circle */}
+      <div className="relative w-24 h-24">
+        {/* Gradient ring (rotating) */}
+        <div className="absolute inset-0 rounded-full animate-rotate bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
+          {/* Inner circle (solid background) */}
+          <div className="absolute inset-[2px] bg-white dark:bg-[#1e1e1e] rounded-full"></div>
+        </div>
+
+        {/* Centered logo with a beeping (scale) animation */}
+        <img
+          src="loader.png" 
+          alt="Logo"
+          className="
+            w-12 h-12
+            absolute
+            top-1/2
+            left-1/2
+            -translate-x-1/2
+            -translate-y-1/2
+            animate-beep
+          "
         />
-        <path
-          className="opacity-75"
-          fill="currentColor"
-          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-        />
-      </svg>
+      </div>
     </div>
   );
 }

@@ -2,8 +2,20 @@
 
 export default function Footer() {
   return (
-    <footer className="bg-blue-500 text-white p-4 text-center">
-      <p>&copy; {new Date().getFullYear()} BI Tool. All rights reserved.</p>
+    <footer
+      className="
+        bg-white
+        dark:bg-[#1e1e1e]
+        text-gray-700
+        dark:text-gray-300
+        p-4
+        text-center
+        shadow-inner
+      "
+    >
+      <p className="text-sm">
+        &copy; 2025 BrandDrive. All rights reserved.
+      </p>
     </footer>
   );
 }

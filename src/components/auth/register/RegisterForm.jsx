@@ -47,6 +47,7 @@ export default function RegisterForm({ setIsLoading }) {
     }
     setError("");
     setIsLoading(true);
+
     try {
       const res = await fetch("/api/register", {
         method: "POST",
@@ -71,39 +72,44 @@ export default function RegisterForm({ setIsLoading }) {
 
   return (
     <div className="w-full">
-      <h2 className="text-2xl font-semibold text-center mb-6 text-gray-900 dark:text-white">
-        Create an Account
-      </h2>
+      {/* Error display */}
       {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="name" className="block text-gray-700 dark:text-gray-300">
-            Full Name
+          <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 font-medium">
+            Name
           </label>
           <input
             type="text"
             id="name"
             value={form.name}
             onChange={handleChange}
-            className="w-full p-3 mt-2 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-            placeholder="Enter your full name"
+            className="w-full p-3 mt-1 border border-gray-300 rounded-lg 
+                       dark:bg-gray-700 dark:border-gray-600 dark:text-white 
+                       focus:outline-none"
+            placeholder="Enter your name"
           />
         </div>
+
         <div>
-          <label htmlFor="email" className="block text-gray-700 dark:text-gray-300">
-            Email Address
+          <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 font-medium">
+            Email
           </label>
           <input
             type="email"
             id="email"
             value={form.email}
             onChange={handleChange}
-            className="w-full p-3 mt-2 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+            className="w-full p-3 mt-1 border border-gray-300 rounded-lg 
+                       dark:bg-gray-700 dark:border-gray-600 dark:text-white 
+                       focus:outline-none"
             placeholder="Enter your email"
           />
         </div>
+
         <div>
-          <label htmlFor="password" className="block text-gray-700 dark:text-gray-300">
+          <label htmlFor="password" className="block text-gray-700 dark:text-gray-300 font-medium">
             Password
           </label>
           <input
@@ -111,12 +117,18 @@ export default function RegisterForm({ setIsLoading }) {
             id="password"
             value={form.password}
             onChange={handleChange}
-            className="w-full p-3 mt-2 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+            className="w-full p-3 mt-1 border border-gray-300 rounded-lg 
+                       dark:bg-gray-700 dark:border-gray-600 dark:text-white 
+                       focus:outline-none"
             placeholder="Create a password"
           />
         </div>
+
         <div>
-          <label htmlFor="confirmPassword" className="block text-gray-700 dark:text-gray-300">
+          <label
+            htmlFor="confirmPassword"
+            className="block text-gray-700 dark:text-gray-300 font-medium"
+          >
             Confirm Password
           </label>
           <input
@@ -124,26 +136,29 @@ export default function RegisterForm({ setIsLoading }) {
             id="confirmPassword"
             value={form.confirmPassword}
             onChange={handleChange}
-            className="w-full p-3 mt-2 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+            className="w-full p-3 mt-1 border border-gray-300 rounded-lg 
+                       dark:bg-gray-700 dark:border-gray-600 dark:text-white 
+                       focus:outline-none"
             placeholder="Confirm your password"
           />
         </div>
-        <div className="text-center">
-          <button
-            type="submit"
-            className="w-full py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-600"
-          >
-            Register
-          </button>
-        </div>
-        <div className="text-center mt-4">
-          <p className="text-gray-600 dark:text-gray-300">
-            Already have an account?{" "}
-            <a href="/signin/login" className="text-blue-500 hover:text-blue-600">
-              Login here
-            </a>
-          </p>
-        </div>
+
+        {/* Submit button */}
+        <button
+          type="submit"
+          className="w-full py-3 bg-black text-white rounded-full 
+                     hover:bg-gray-800 transition"
+        >
+          Sign in
+        </button>
+
+        {/* Already have an account */}
+        <p className="text-center text-gray-500 dark:text-gray-300 text-sm mt-4">
+          Have an account?{" "}
+          <a href="/signin/login" className="text-blue-500 hover:text-blue-600 dark:text-blue-400">
+            Login
+          </a>
+        </p>
       </form>
     </div>
   );
