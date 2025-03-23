@@ -1,6 +1,21 @@
 "use client";
+import React, { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 
 export default function Loader() {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  const loaderSrc = theme === "light" 
+    ? "/signin_images/loader-light.png" 
+    : "/signin_images/loader.png";
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       {/* Outer container for the rotating gradient circle */}
@@ -13,7 +28,7 @@ export default function Loader() {
 
         {/* Centered logo with a beeping (scale) animation */}
         <img
-          src="/signin_images/loader.png" 
+          src={loaderSrc}
           alt="Logo"
           className="
             w-12 h-12

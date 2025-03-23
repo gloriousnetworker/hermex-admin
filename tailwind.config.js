@@ -1,5 +1,3 @@
-// tailwind.config.js
-
 const { nextui } = require('@nextui-org/react');
 
 module.exports = {
@@ -31,17 +29,32 @@ module.exports = {
           '0%, 100%': { opacity: '0' },
           '50%': { opacity: '1' },
         },
+        slideInRight: {
+          '0%': { opacity: '0', transform: 'translateX(100%)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        slideInLeft: {
+          '0%': { opacity: '0', transform: 'translateX(-100%)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
       },
       animation: {
         rotate: 'rotate 2s linear infinite',
         beep: 'beep 1.5s ease-in-out infinite',
         blink: 'blink 1.2s ease-in-out infinite',
         'dot-1': 'dotBlink 1s ease-in-out infinite',
-        'dot-2': 'dotBlink 1s ease-in-out infinite 0.2s', // 0.2s delay for the second dot
-        'dot-3': 'dotBlink 1s ease-in-out infinite 0.4s', // 0.4s delay for the third dot
+        'dot-2': 'dotBlink 1s ease-in-out infinite 0.2s',
+        'dot-3': 'dotBlink 1s ease-in-out infinite 0.4s',
+        slideInRight: 'slideInRight 1s ease-out forwards',
+        slideInLeft: 'slideInLeft 1s ease-out forwards',
+        marquee: 'marquee 20s linear infinite',
       },
       screens: {
-        sm: '640px', 
+        sm: '640px',
       },
     },
   },
