@@ -1,205 +1,121 @@
-import Link from "next/link";
-import Image from "next/image";
-import React from "react";
-import { Container } from "@/components/Container";
+import Link from 'next/link';
 
-export function Footer() {
-  const navigation = ["Product", "Features", "Pricing", "Company", "Blog"];
-  const legal = ["Terms", "Privacy", "Legal"];
+export default function Footer() {
+  const footerColumns = [
+    {
+      title: 'Quick Links',
+      items: [
+        { name: 'About Us', href: '#about' },
+        { name: 'Services', href: '#services' },
+        { name: 'Why Choose Us', href: '#why-us' },
+        { name: 'Contact', href: '#contact' }
+      ]
+    },
+    {
+      title: 'Services',
+      items: [
+        { name: 'Affiliate Marketing', href: '#services' },
+        { name: 'Strategy Development', href: '#services' },
+        { name: 'Campaign Management', href: '#services' },
+        { name: 'Consultation', href: '#contact' }
+      ]
+    },
+    {
+      title: 'Company',
+      items: [
+        { name: 'Our Team', href: '#about' },
+        { name: 'Careers', href: 'mailto:careers@efiazzyfly.com' },
+        { name: 'Partners', href: '#contact' },
+        { name: 'Testimonials', href: '#why-us' }
+      ]
+    }
+  ];
+
+  const socialMedia = [
+    { name: 'Facebook', icon: 'M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z', href: 'https://facebook.com' },
+    { name: 'Twitter', icon: 'M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84', href: 'https://twitter.com' },
+    { name: 'Instagram', icon: 'M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z', href: 'https://instagram.com' },
+    { name: 'LinkedIn', icon: 'M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z', href: 'https://linkedin.com' }
+  ];
+
   return (
-    <div className="relative">
-      <Container>
-        <div className="grid max-w-screen-xl grid-cols-1 gap-10 pt-10 mx-auto mt-5 border-t border-gray-100 dark:border-trueGray-700 lg:grid-cols-5">
+    <footer className="bg-gray-900 text-white pt-16 pb-8">
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           <div className="lg:col-span-2">
-            <div>
-              {" "}
-              <Link
-                href="/"
-                className="flex items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100"
-              >
-                <Image
-                  src="/signin_images/loader.png"
-                  alt="N"
-                  width="32"
-                  height="32"
-                  className="w-8"
-                />
-                <span>The BI Model</span>
-              </Link>
-            </div>
-
-            <div className="max-w-md mt-4 text-gray-500 dark:text-gray-400">
-              The BI Model is a free Analytical Business & marketing Model tool for
-              startups and indie projects. Its built with Next.js & TailwindCSS.
-              And its completely open-source.
-            </div>
-
-            <div className="mt-5">
-              <a
-                href="https://vercel.com/?utm_source=web3templates&utm_campaign=oss"
-                target="_blank"
-                rel="noopener"
-                className="relative block w-44"
-              >
-                <Image
-                  src="/img/vercel.svg"
-                  alt="Powered by me Udofot.tsx"
-                  width="212"
-                  height="44"
-                />
-              </a>
-            </div>
-          </div>
-
-          <div>
-            <div className="flex flex-wrap w-full -mt-2 -ml-3 lg:ml-0">
-              {navigation.map((item, index) => (
-                <Link
-                  key={index}
-                  href="/"
-                  className="w-full px-4 py-2 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-trueGray-700"
-                >
-                  {item}
-                </Link>
+            <Link href="/" className="flex items-center mb-6">
+              <img src="/images/logo.png" alt="Efiazzyfly Logo" className="h-12" />
+            </Link>
+            <p className="text-gray-400 mb-6">
+              Efiazzyfly specializes in premium affiliate marketing solutions for luxury hotels and travel brands, helping you maximize bookings and revenue.
+            </p>
+            <div className="flex space-x-4">
+              {socialMedia.map((social) => (
+                <a key={social.name} href={social.href} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#D4AF37] transition">
+                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d={social.icon} />
+                  </svg>
+                </a>
               ))}
             </div>
           </div>
-          <div>
-            <div className="flex flex-wrap w-full -mt-2 -ml-3 lg:ml-0">
-              {legal.map((item, index) => (
-                <Link
-                  key={index}
-                  href="/"
-                  className="w-full px-4 py-2 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-trueGray-700"
-                >
-                  {item}
-                </Link>
-              ))}
+
+          {footerColumns.map(col => (
+            <div key={col.title}>
+              <h3 className="text-lg font-semibold mb-4 text-[#D4AF37]">{col.title}</h3>
+              <ul className="space-y-2 text-gray-400">
+                {col.items.map(item => (
+                  <li key={item.name}>
+                    <Link href={item.href} className="hover:text-white transition">
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
-          <div className="">
-            <div>Follow us</div>
-            <div className="flex mt-5 space-x-5 text-gray-400 dark:text-gray-500">
-              <a
-                href="https://twitter.com/web3templates"
-                target="_blank"
-                rel="noopener"
-              >
-                <span className="sr-only">Twitter</span>
-                <Twitter />
-              </a>
-              <a
-                href="https://facebook.com/web3templates"
-                target="_blank"
-                rel="noopener"
-              >
-                <span className="sr-only">Facebook</span>
-                <Facebook />
-              </a>
-              <a
-                href="https://instagram.com/web3templates"
-                target="_blank"
-                rel="noopener"
-              >
-                <span className="sr-only">Instagram</span>
-                <Instagram />
-              </a>
-              <a href="https://linkedin.com/" target="_blank" rel="noopener">
-                <span className="sr-only">Linkedin</span>
-                <Linkedin />
-              </a>
+          ))}
+
+          <div>
+            <h3 className="text-lg font-semibold mb-4 text-[#D4AF37]">Contact Us</h3>
+            <div className="space-y-3 text-gray-400">
+              <p>70 Bayo oyewole street, Off Ago Palace way, Oshodi </p>
+              <p>Lagos, Nigeria</p>
+              <p>
+                <a href="tel:+1234567890" className="hover:text-white transition">
+                  +234 (803) 738-7065
+                </a>
+              </p>
+              <p>
+                <a href="https://wa.me/2348158251042" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+                  WhatsApp: +234 815 825 1042
+                </a>
+              </p>
+              <p>
+                <a href="mailto:info@efiazzyfly.com" className="hover:text-white transition">
+                  info@efiazzyfly.com
+                </a>
+              </p>
             </div>
           </div>
         </div>
 
-        <div className="my-10 text-sm text-center text-gray-600 dark:text-gray-400">
-          Copyright © {new Date().getFullYear()}. Made with ♥ by{" "}
-          <a href="https://web3templates.com/" target="_blank" rel="noopener">
-            Udofot.tsx.
-          </a>{" "}
-          Illustrations from{" "}
-          <a href="https://www.glazestock.com/" target="_blank" rel="noopener ">
-            BrandDrive
-          </a>
+        <div className="border-t border-gray-800 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-500 text-sm mb-4 md:mb-0">
+            &copy; {new Date().getFullYear()} Efiazzyfly. All rights reserved.
+          </p>
+          <div className="flex space-x-6 text-gray-500">
+            <Link href="/privacy" className="hover:text-white text-sm transition">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:text-white text-sm transition">
+              Terms of Service
+            </Link>
+            <Link href="/cookies" className="hover:text-white text-sm transition">
+              Cookie Policy
+            </Link>
+          </div>
         </div>
-      </Container>
-      {/* Do not remove this */}
-      <Backlink />
-    </div>
+      </div>
+    </footer>
   );
 }
-
-const Twitter = ({ size = 24 }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="currentColor"
-  >
-    <path d="M24 4.37a9.6 9.6 0 0 1-2.83.8 5.04 5.04 0 0 0 2.17-2.8c-.95.58-2 1-3.13 1.22A4.86 4.86 0 0 0 16.61 2a4.99 4.99 0 0 0-4.79 6.2A13.87 13.87 0 0 1 1.67 2.92 5.12 5.12 0 0 0 3.2 9.67a4.82 4.82 0 0 1-2.23-.64v.07c0 2.44 1.7 4.48 3.95 4.95a4.84 4.84 0 0 1-2.22.08c.63 2.01 2.45 3.47 4.6 3.51A9.72 9.72 0 0 1 0 19.74 13.68 13.68 0 0 0 7.55 22c9.06 0 14-7.7 14-14.37v-.65c.96-.71 1.79-1.6 2.45-2.61z" />
-  </svg>
-);
-
-const Facebook = ({ size = 24 }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="currentColor"
-  >
-    <path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07" />
-  </svg>
-);
-const Instagram = ({ size = 24 }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="currentColor"
-  >
-    <path d="M16.98 0a6.9 6.9 0 0 1 5.08 1.98A6.94 6.94 0 0 1 24 7.02v9.96c0 2.08-.68 3.87-1.98 5.13A7.14 7.14 0 0 1 16.94 24H7.06a7.06 7.06 0 0 1-5.03-1.89A6.96 6.96 0 0 1 0 16.94V7.02C0 2.8 2.8 0 7.02 0h9.96zm.05 2.23H7.06c-1.45 0-2.7.43-3.53 1.25a4.82 4.82 0 0 0-1.3 3.54v9.92c0 1.5.43 2.7 1.3 3.58a5 5 0 0 0 3.53 1.25h9.88a5 5 0 0 0 3.53-1.25 4.73 4.73 0 0 0 1.4-3.54V7.02a5 5 0 0 0-1.3-3.49 4.82 4.82 0 0 0-3.54-1.3zM12 5.76c3.39 0 6.2 2.8 6.2 6.2a6.2 6.2 0 0 1-12.4 0 6.2 6.2 0 0 1 6.2-6.2zm0 2.22a3.99 3.99 0 0 0-3.97 3.97A3.99 3.99 0 0 0 12 15.92a3.99 3.99 0 0 0 3.97-3.97A3.99 3.99 0 0 0 12 7.98zm6.44-3.77a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8z" />
-  </svg>
-);
-
-const Linkedin = ({ size = 24 }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="currentColor"
-  >
-    <path d="M22.23 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.2 0 22.23 0zM7.27 20.1H3.65V9.24h3.62V20.1zM5.47 7.76h-.03c-1.22 0-2-.83-2-1.87 0-1.06.8-1.87 2.05-1.87 1.24 0 2 .8 2.02 1.87 0 1.04-.78 1.87-2.05 1.87zM20.34 20.1h-3.63v-5.8c0-1.45-.52-2.45-1.83-2.45-1 0-1.6.67-1.87 1.32-.1.23-.11.55-.11.88v6.05H9.28s.05-9.82 0-10.84h3.63v1.54a3.6 3.6 0 0 1 3.26-1.8c2.39 0 4.18 1.56 4.18 4.89v6.21z" />
-  </svg>
-);
-
-const Backlink = () => {
-  return (
-    <a
-      href="https://web3templates.com"
-      target="_blank"
-      rel="noopener"
-      className="absolute flex px-3 py-1 space-x-2 text-sm font-semibold text-gray-900 bg-white border border-gray-300 rounded shadow-sm place-items-center left-5 bottom-5 dark:bg-trueGray-900 dark:border-trueGray-700 dark:text-trueGray-300"
-    >
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 30 30"
-        fill="none"
-        className="w-4 h-4"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect width="30" height="29.5385" rx="2.76923" fill="#362F78" />
-        <path
-          d="M10.14 21.94H12.24L15.44 12.18L18.64 21.94H20.74L24.88 8H22.64L19.58 18.68L16.36 8.78H14.52L11.32 18.68L8.24 8H6L10.14 21.94Z"
-          fill="#F7FAFC"
-        />
-      </svg>
-
-      <span>BrandDriveTemplates</span>
-    </a>
-  );
-};

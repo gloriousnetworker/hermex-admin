@@ -1,46 +1,54 @@
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Import FontAwesome styles */
-@import "@fortawesome/fontawesome-free/css/all.min.css";
-
-html {
-  /* The default theme will be light mode. */
-  transition: background-color 0.3s ease;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Dark mode styles */
-html.dark {
-  background-color: #1a202c; /* Dark background */
-  color: white; /* Light text */
+html, body {
+  height: 100%;
+  width: 100%;
 }
 
-/* Font Styles */
 body {
-  @apply bg-background text-foreground font-sans;
+  background-color: #f9fafb;
+  color: #111827;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
-/* Optional Utility Layer */
+.font-space-grotesk {
+  font-family: 'Space Grotesk', sans-serif !important;
+}
+
+@layer base {
+  html {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-
-  /* Custom Media Query for Small Screens */
+  
   @media (max-width: 640px) {
     .back-arrow {
-      left: 12px !important;  /* Adjust for small screen */
-      top: 10px !important;   /* Adjust top position */
+      left: 12px !important;
+      top: 10px !important;
     }
   }
-
-  /* Hide scrollbar utility */
+  
   .hide-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none;    /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
+  
   .hide-scrollbar::-webkit-scrollbar {
-    display: none;            /* Chrome, Safari, and Opera */
+    display: none;
   }
 }

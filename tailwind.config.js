@@ -1,7 +1,6 @@
 const { nextui } = require('@nextui-org/react');
 
 module.exports = {
-  darkMode: 'class',
   content: [
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/features/**/*.{js,ts,jsx,tsx,mdx}',
@@ -12,6 +11,13 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        background: '#f9fafb',
+        foreground: '#111827',
+      },
+      fontFamily: {
+        playfair: ['"Playfair Display"', 'serif'],
+      },
       keyframes: {
         rotate: {
           '0%': { transform: 'rotate(0deg)' },
@@ -29,18 +35,6 @@ module.exports = {
           '0%, 100%': { opacity: '0' },
           '50%': { opacity: '1' },
         },
-        slideInRight: {
-          '0%': { opacity: '0', transform: 'translateX(100%)' },
-          '100%': { opacity: '1', transform: 'translateX(0)' },
-        },
-        slideInLeft: {
-          '0%': { opacity: '0', transform: 'translateX(-100%)' },
-          '100%': { opacity: '1', transform: 'translateX(0)' },
-        },
-        marquee: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-100%)' },
-        },
       },
       animation: {
         rotate: 'rotate 2s linear infinite',
@@ -49,9 +43,6 @@ module.exports = {
         'dot-1': 'dotBlink 1s ease-in-out infinite',
         'dot-2': 'dotBlink 1s ease-in-out infinite 0.2s',
         'dot-3': 'dotBlink 1s ease-in-out infinite 0.4s',
-        slideInRight: 'slideInRight 1s ease-out forwards',
-        slideInLeft: 'slideInLeft 1s ease-out forwards',
-        marquee: 'marquee 20s linear infinite',
       },
       screens: {
         sm: '640px',
